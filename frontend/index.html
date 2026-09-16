@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CloudShield</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark">&#128737;</span>
+      <span class="brand-name">CloudShield</span>
+    </div>
+    <div id="session-info" class="session-info" hidden>
+      <button id="user-menu-btn" class="user-menu-btn" type="button">
+        <span id="session-email"></span>
+        <span class="chevron" aria-hidden="true">&#9662;</span>
+      </button>
+      <div id="user-menu" class="user-menu" hidden>
+        <button id="logout-btn" class="btn btn-ghost btn-small" type="button">Log out</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="auth-view" class="auth-view">
+      <div class="auth-hero">
+        <div class="auth-brand-mark">&#128737;</div>
+        <h1>CloudShield</h1>
+        <p class="auth-subtitle">Secure credential storage built as a cloud infrastructure lab</p>
+      </div>
+
+      <div class="card auth-card">
+        <div class="tabs">
+          <button class="tab-btn active" data-tab="login" type="button">Log in</button>
+          <button class="tab-btn" data-tab="register" type="button">Register</button>
+        </div>
+
+        <h2 id="auth-card-title" class="auth-card-title">Welcome back</h2>
+
+        <form id="login-form" class="tab-panel active">
+          <label>Email <input type="email" id="login-email" autocomplete="username" required></label>
+          <label>Password <input type="password" id="login-password" autocomplete="current-password" required></label>
+          <button type="submit" class="btn btn-primary btn-block"><span class="btn-label">Sign in</span></button>
+          <p class="auth-switch">Don't have an account? <button type="button" class="link-btn" data-tab-switch="register">Register</button></p>
+        </form>
+
+        <form id="register-form" class="tab-panel">
+          <label>Email <input type="email" id="register-email" autocomplete="username" required></label>
+          <label>Password (min 12 characters) <input type="password" id="register-password" minlength="12" autocomplete="new-password" required></label>
+          <button type="submit" class="btn btn-primary btn-block"><span class="btn-label">Create account</span></button>
+          <p class="auth-switch">Already have an account? <button type="button" class="link-btn" data-tab-switch="login">Log in</button></p>
+        </form>
+      </div>
+
+      <p class="auth-footnote">Argon2id &bull; Encrypted vault &bull; Rate-limited &bull; Containerized</p>
+    </section>
+
+    <section id="vault-view" class="vault-view" hidden>
+      <div class="vault-header">
+        <h1>Your Vault</h1>
+        <button id="add-credential-btn" class="btn btn-primary" type="button">+ Add credential</button>
+      </div>
+      <p id="vault-summary" class="vault-summary"></p>
+
+      <ul id="entry-list" class="entry-list"></ul>
+
+      <div id="empty-state" class="empty-state" hidden>
+        <div class="empty-icon" aria-hidden="true">&#128274;</div>
+        <h3>Your vault is empty</h3>
+        <p>Add your first demo credential to start exploring CloudShield.</p>
+        <button id="empty-add-btn" class="btn btn-primary" type="button">+ Add credential</button>
+      </div>
+    </section>
+
+    <section id="security-lab-view" class="security-lab-view" hidden>
+      <div class="section-divider" aria-hidden="true"></div>
+
+      <div class="security-lab-header">
+        <span class="security-lab-icon" aria-hidden="true">&#128272;</span>
+        <div>
+          <h2>Security Lab</h2>
+          <p>Explore the controls protecting this application.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 class="panel-title">Security controls</h3>
+        <ul id="security-controls" class="security-controls"></ul>
+      </div>
+
+      <div class="card">
+        <h3 class="panel-title">Watch the defenses work</h3>
+        <p class="panel-hint">These buttons hit the real API through the real edge &mdash; nothing here is simulated.</p>
+
+        <div class="playground-item">
+          <div class="playground-item-text">
+            <strong>Response headers</strong>
+            <span>Inspect the security headers this page actually received.</span>
+          </div>
+          <button id="check-headers-btn" class="btn btn-small" type="button"><span class="btn-label">Check headers</span></button>
+        </div>
+        <pre id="headers-output" class="playground-output" hidden></pre>
+
+        <div class="playground-item">
+          <div class="playground-item-text">
+            <strong>Rate limiting</strong>
+            <span>Fire 20 rapid login attempts and watch nginx start returning 429s.</span>
+          </div>
+          <button id="rate-limit-btn" class="btn btn-small" type="button"><span class="btn-label">Fire 20 login attempts</span></button>
+        </div>
+        <pre id="rate-limit-output" class="playground-output" hidden></pre>
+
+        <div class="playground-item">
+          <div class="playground-item-text">
+            <strong>Ownership checks</strong>
+            <span>Request a vault entry ID that belongs to nobody.</span>
+          </div>
+          <button id="ownership-btn" class="btn btn-small" type="button"><span class="btn-label">Request a stranger's entry</span></button>
+        </div>
+        <pre id="ownership-output" class="playground-output" hidden></pre>
+      </div>
+    </section>
+
+    <p id="status" class="status" role="status" aria-live="polite"></p>
+  </main>
+
+  <dialog id="add-credential-modal" class="modal">
+    <form id="entry-form" class="modal-form">
+      <div class="modal-header">
+        <h2>Add credential</h2>
+        <button type="button" id="modal-close-btn" class="modal-close" aria-label="Close">&times;</button>
+      </div>
+      <label>Name <input type="text" id="entry-label" placeholder="GitHub" required maxlength="100"></label>
+      <label>Secret <input type="password" id="entry-secret" placeholder="Enter a secret" required maxlength="1000"></label>
+      <div class="modal-actions">
+        <button type="button" id="modal-cancel-btn" class="btn btn-ghost">Cancel</button>
+        <button type="submit" class="btn btn-primary"><span class="btn-label">Save credential</span></button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>

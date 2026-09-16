@@ -1,0 +1,592 @@
+:root {
+  color-scheme: dark;
+  --bg: #0b0f14;
+  --surface: #131a22;
+  --surface-2: #1a2330;
+  --border: #263340;
+  --text: #e6edf3;
+  --text-dim: #8b98a5;
+  --accent: #4da3ff;
+  --accent-2: #34d399;
+  --danger: #f87171;
+  --warn: #f5b942;
+  --radius: 10px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--border);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.brand-mark {
+  font-size: 1.3rem;
+}
+
+.session-info {
+  position: relative;
+}
+
+.user-menu-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  padding: 6px 10px;
+  color: var(--text-dim);
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.user-menu-btn:hover {
+  border-color: var(--border);
+}
+
+.chevron {
+  font-size: 0.7rem;
+}
+
+.user-menu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 6px);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  z-index: 10;
+}
+
+.container {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 32px 20px 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+}
+
+.panel-title {
+  margin-top: 0;
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.panel-hint {
+  margin-top: -8px;
+  color: var(--text-dim);
+  font-size: 0.85rem;
+}
+
+/* Auth view */
+
+.auth-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  padding-top: 24px;
+}
+
+.auth-hero {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.auth-brand-mark {
+  font-size: 2.4rem;
+}
+
+.auth-hero h1 {
+  margin: 0;
+  font-size: 1.6rem;
+  letter-spacing: 0.04em;
+}
+
+.auth-subtitle {
+  margin: 0;
+  color: var(--text-dim);
+  font-size: 0.95rem;
+  max-width: 360px;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 400px;
+}
+
+.auth-card-title {
+  margin: 0 0 18px;
+  font-size: 1.1rem;
+}
+
+.auth-switch {
+  text-align: center;
+  color: var(--text-dim);
+  font-size: 0.85rem;
+  margin: 4px 0 0;
+}
+
+.link-btn {
+  background: none;
+  border: none;
+  color: var(--accent);
+  cursor: pointer;
+  font-size: 0.85rem;
+  padding: 0;
+}
+
+.auth-footnote {
+  color: var(--text-dim);
+  font-size: 0.8rem;
+  text-align: center;
+  letter-spacing: 0.02em;
+}
+
+.tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.tab-btn {
+  background: none;
+  border: none;
+  color: var(--text-dim);
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  border-bottom: 2px solid transparent;
+}
+
+.tab-btn.active {
+  color: var(--text);
+  border-bottom-color: var(--accent);
+}
+
+.tab-panel {
+  display: none;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.tab-panel.active {
+  display: flex;
+}
+
+form label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.85rem;
+  color: var(--text-dim);
+}
+
+input {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 10px 12px;
+  color: var(--text);
+  font-size: 0.95rem;
+}
+
+input:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.btn {
+  border: none;
+  border-radius: 6px;
+  padding: 10px 16px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  font-weight: 600;
+  position: relative;
+}
+
+.btn:disabled {
+  cursor: default;
+}
+
+.btn-block {
+  width: 100%;
+  margin-top: 4px;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #04121f;
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text-dim);
+  border: 1px solid var(--border);
+}
+
+.btn-small {
+  background: var(--surface-2);
+  color: var(--text);
+  border: 1px solid var(--border);
+  padding: 6px 10px;
+  font-size: 0.8rem;
+}
+
+.btn.is-loading {
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+.btn.is-loading .btn-label {
+  visibility: hidden;
+}
+
+.btn.is-loading::after {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  top: 50%;
+  left: 50%;
+  margin: -7px 0 0 -7px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: currentColor;
+  border-radius: 50%;
+  animation: btn-spin 0.6s linear infinite;
+}
+
+@keyframes btn-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Vault view */
+
+.vault-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.vault-header h1 {
+  margin: 0;
+  font-size: 1.3rem;
+}
+
+.vault-summary {
+  margin: -8px 0 4px;
+  color: var(--text-dim);
+  font-size: 0.85rem;
+}
+
+.entry-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.entry-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+}
+
+.entry-icon {
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+.entry-main {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 160px;
+}
+
+.entry-top {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.entry-label {
+  font-weight: 600;
+}
+
+.entry-meta {
+  color: var(--text-dim);
+  font-size: 0.78rem;
+}
+
+.entry-type {
+  color: var(--text-dim);
+  font-size: 0.78rem;
+}
+
+.entry-secret-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.entry-secret {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  color: var(--accent-2);
+  min-width: 8ch;
+  text-align: right;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 48px 20px;
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.empty-icon {
+  font-size: 2.2rem;
+}
+
+.empty-state h3 {
+  margin: 0;
+}
+
+.empty-state p {
+  margin: 0 0 8px;
+  color: var(--text-dim);
+  max-width: 340px;
+  font-size: 0.9rem;
+}
+
+/* Security Lab — deliberately separated from the vault above: the user
+   came to manage credentials, a visitor came to see the architecture. */
+
+.security-lab-view {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.section-divider {
+  border: none;
+  border-top: 1px dashed var(--border);
+  margin: 4px 0 0;
+}
+
+.security-lab-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.security-lab-icon {
+  font-size: 1.8rem;
+  line-height: 1.2;
+}
+
+.security-lab-header h2 {
+  margin: 0 0 4px;
+  font-size: 1.15rem;
+}
+
+.security-lab-header p {
+  margin: 0;
+  color: var(--text-dim);
+  font-size: 0.88rem;
+  max-width: 480px;
+}
+
+.security-controls {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 0.9rem;
+}
+
+.control-ok {
+  color: var(--accent-2);
+}
+
+.control-warn {
+  color: var(--warn);
+}
+
+.playground-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 12px 0;
+  border-top: 1px solid var(--border);
+}
+
+.playground-item:first-of-type {
+  border-top: none;
+}
+
+.playground-item-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.playground-item-text span {
+  color: var(--text-dim);
+  font-size: 0.82rem;
+}
+
+.playground-output {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.8rem;
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin: -6px 0 6px;
+  color: var(--text-dim);
+}
+
+.status {
+  text-align: center;
+  min-height: 1.2em;
+  font-size: 0.9rem;
+}
+
+.status-ok {
+  color: var(--accent-2);
+}
+
+.status-error {
+  color: var(--danger);
+}
+
+/* Modal */
+
+.modal {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--text);
+  padding: 0;
+  width: min(420px, calc(100vw - 40px));
+}
+
+.modal::backdrop {
+  background: rgba(4, 8, 12, 0.65);
+}
+
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 22px;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  color: var(--text-dim);
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+@media (max-width: 480px) {
+  .topbar {
+    padding: 12px 16px;
+  }
+
+  .container {
+    padding: 20px 14px 60px;
+  }
+
+  .entry-secret-row {
+    margin-left: 0;
+    width: 100%;
+    justify-content: flex-start;
+  }
+}

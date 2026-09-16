@@ -1,0 +1,12 @@
+# Local dev only: publishes Postgres on the host so an app process running
+# outside Docker (README "Option B") can reach it at localhost:5432.
+#
+# The base docker-compose.yml deliberately does NOT publish this port —
+# once the full stack is up, app -> postgres should stay on the internal
+# Docker network only. Copy this file to `docker-compose.override.yml`
+# (already gitignored) to opt back in locally; Compose merges it
+# automatically.
+services:
+  postgres:
+    ports:
+      - "5432:5432"
